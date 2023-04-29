@@ -1,0 +1,16 @@
+<div class="component" style="height: 50px; margin-top: 10px;">
+    <hr class="line">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+
+        <nav mat-tab-nav-bar [tabPanel]="tabPanel" style="width: 100%;">
+            <a mat-tab-link routerLink="./information" routerLinkActive="active-link">Информация</a>
+            <a mat-tab-link routerLink="./documents" routerLinkActive="active-link">Документы</a>
+            <a mat-tab-link routerLink="./serviceplans" routerLinkActive="active-link">Сервисные планы</a>
+            <a mat-tab-link routerLink="./references" routerLinkActive="active-link">Выдача справки</a>
+        </nav>
+
+    </div>
+</div>
+<mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+</mat-tab-nav-panel>

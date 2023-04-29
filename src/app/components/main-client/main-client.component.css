@@ -1,15 +1,19 @@
-.body {
-    margin: 0;
-}
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: greenyellow;
-}
 .component {
     -webkit-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
     box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
     background-color: white;
-    height: 40px;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #adff2f;
+    padding: 0px;
+    margin: 0px;
+}
+.active-link {
+    color:#5f9c03;
+}
+a {
+    text-decoration: none;
 }

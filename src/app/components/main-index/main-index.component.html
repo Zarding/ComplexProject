@@ -1,0 +1,57 @@
+<div style="display:flex; justify-content: space-between;">
+    <div style="width: 15%; height: auto; background-color: #3DB6FF; margin-right: 5px;" class="left">
+        <div>
+            <a routerLink="/addClient">Добавить клиента</a>
+        </div>
+    </div>
+    <div style="width: 85%; margin-left: 5px;">
+        <div class="component">
+            <hr class="line">
+            <mat-toolbar style="display: flex; justify-content: space-between;">
+                <span><a href="#">Обновить таблицу</a></span>
+                <span><a href="#" style="align-items: right;">Фильтры</a></span>
+            </mat-toolbar>
+        </div>
+        <div class="component-filter">
+            <hr class="line">
+            <mat-toolbar style="display: flex; justify-content: space-between;">
+                <span><a href="#">Обновить таблицу</a></span>
+                <span><a href="#" style="align-items: right;">Фильтры</a></span>
+            </mat-toolbar>
+        </div>
+        
+          <div class="content" style="height:1000px;">
+            <hr class="line">
+            <div fxLayout="row wrap" fxLayoutGap="16px grid" >
+              <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
+                   infinite-scroll
+                   [infiniteScrollDistance]="2"
+                   [infiniteScrollThrottle]="100"
+                   (scrolled)="onScroll()"
+                   *ngFor="let people of humans">
+                   <a style="text-decoration: none; color:black" routerLink="{{people.name}}/information">
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Имя: <br>{{ people.name }}</mat-card-title>
+                          <mat-card-subtitle>Возраст: {{people.dob}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <br>
+                        <img src="{{people.picture}}" class="foto">
+                        <mat-card-content>
+                          <br>
+                          <p>
+                            Пол: {{people.gender}}
+                          </p>
+                        </mat-card-content>
+                      </mat-card>
+                   </a>
+                  
+                </div>
+              </div>
+            </div>
+          
+          
+    </div>
+</div>
+
