@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatListModule} from "@angular/material/list";
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {MatNativeDateModule} from "@angular/material/core";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import {CdkVirtualScrollableElement} from "@angular/cdk/scrolling";
-import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +18,25 @@ import { MainClientInformationComponent } from './components/main-client-informa
 import { MainClientDocumentsComponent } from './components/main-client-documents/main-client-documents.component';
 import { MainClientServicePlansComponent } from './components/main-client-service-plans/main-client-service-plans.component';
 import { MainClientReferencesComponent } from './components/main-client-references/main-client-references.component';
+import { AuthorizationComponent } from './components/authorization/authorization.component';
+
+import {A11yModule} from '@angular/cdk/a11y';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -35,31 +47,39 @@ import { MainClientReferencesComponent } from './components/main-client-referenc
     MainClientInformationComponent,
     MainClientDocumentsComponent,
     MainClientServicePlansComponent,
-    MainClientReferencesComponent
+    MainClientReferencesComponent,
+    AuthorizationComponent
   ],
   imports: [
     BrowserModule,
-    MatTabsModule,
+    A11yModule,
     AppRoutingModule,
-    MatFormFieldModule,
-    MatListModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatButtonModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
     FlexLayoutModule,
     InfiniteScrollModule,
     CdkVirtualScrollableElement,
-    AgGridModule
+    AgGridModule,
+    ClipboardModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
+    MatAutocompleteModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

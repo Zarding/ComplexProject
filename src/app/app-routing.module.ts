@@ -7,8 +7,10 @@ import { MainClientInformationComponent } from './components/main-client-informa
 import { MainClientDocumentsComponent } from './components/main-client-documents/main-client-documents.component';
 import { MainClientServicePlansComponent } from './components/main-client-service-plans/main-client-service-plans.component';
 import { MainClientReferencesComponent } from './components/main-client-references/main-client-references.component';
+import { AuthorizationComponent } from './components/authorization/authorization.component';
 
 const routes: Routes = [
+  {path: '', component: AuthorizationComponent},
   {path: 'addClient', component: AddClientComponent},
   {path: 'clients', component: MainIndexComponent},
   {path: 'clients/:name', component: MainClientComponent, children: 

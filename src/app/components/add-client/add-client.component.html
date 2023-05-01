@@ -1,11 +1,11 @@
-<div class="component" style="height: 50px; margin-top: 10px;">
-    <hr class="line">
-    <p style="padding-left: 10px;">Добавление клиента</p>
+<div class="bg-white shadow-lg h-[50px] mt-[10px] flex flex-col">
+    <hr class="w-full h-[3px] bg-green-400">
+    <p class="pl-[10px] my-auto">Добавление клиента</p>
 </div>
-<div style="display:flex; justify-content: space-between; margin-top: 10px;">
+<div class="flex justify-between mt-[10px]">
     <div style="width: 55%; margin-right: 10px; height: 100%;">
-        <hr class="line">
-        <div class="component" style="height: 100%; margin-top: 0px; padding-left: 5px; padding-right: 5px;">
+        <hr class="w-full h-[3px] bg-green-400">
+        <div class="bg-white shadow-lg h-full px-[5px] mt-0">
             <div style="display:flex; justify-content: space-between;">
                 <div style="width: 40%;">
                     <p>Фото</p>
@@ -23,13 +23,14 @@
                         <p style="margin-bottom: 5px;">Отчество</p>
                         <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
                     </div>
-                    <div style="display:flex; justify-content: space-between;">
-                        <div style="width: 50%; margin-right: 5px;">
+                    <div class="flex justify-between">
+                        <div class="w-[30%] mr-[5px]">
                             <p style="margin-bottom: 5px;">Пол</p>
-                            <input type="text">
+                            <input type="text" class="w-[80%]">
                         </div>
-                        <div style="width: 50%;">
+                        <div class="w-[70%]">
                             <p style="margin-bottom: 5px;">Дата рождения</p>
+                            
                             <input type="date">
                         </div>
                     </div>
@@ -72,22 +73,21 @@
         </div>
     </div>
     
-    <div style="width: 45%; margin-left: 10px;">
-        <hr class="line">
-        <div class="component" style="position: relative; height: 100%; margin-top: 0px; padding-top: 0px;">
-            <div style="display: flex;">
-                <p style="margin-top: 0px; margin-left: 5px; margin-right: 15px;">Документы</p>
-                <a routerLink="/main">+Добавить</a>
+    <div class="w-[45%] ml-[10px]">
+        <hr class="w-full h-[3px] bg-green-400">
+        <div class="bg-white shadow-lg h-full px-[5px] mt-0 relative pt-0">
+            <div class="flex">
+                <p class="mt-0 ml-[5px] mr-[15px]">Документы</p>
+                <button>+Добавить</button>
             </div>
             <div>
                 <ag-grid-angular 
-                    style="width: 100%; height: 300px;" 
-                    class="ag-theme-material"
+                    class="ag-theme-material w-full h-[300px]"
                     [rowData]="rowData" 
                     [columnDefs]="columnDefs">
                 </ag-grid-angular>
             </div>
-            <div style="position: absolute; bottom: 10px; right: 10px;">
+            <div class="absolute bottom-[10px] right-[10px] bg-sky-300">
                 <button>
                     <p>Создать</p>
                 </button>

@@ -1,27 +1,26 @@
-<div style="display:flex; justify-content: space-between;">
-    <div style="width: 15%; height: auto; background-color: #3DB6FF; margin-right: 5px;" class="left">
+<div class="flex justify-between">
+    <div class="w-[15%] h-auto bg-sky-500 mr-[5px]">
         <div>
             <a routerLink="/addClient">Добавить клиента</a>
         </div>
     </div>
-    <div style="width: 85%; margin-left: 5px;">
-        <div class="component">
-            <hr class="line">
-            <mat-toolbar style="display: flex; justify-content: space-between;">
+    <div class="w-[85%] ml-[5px]">
+        <div class="h-[40px] my-[10px] bg-white box shadow-lg flex flex-col">
+          <hr class="w-full h-[3px] bg-green-400 ">
+            <mat-toolbar class="flex justify-between my-auto">
                 <span><a href="#">Обновить таблицу</a></span>
-                <span><a href="#" style="align-items: right;">Фильтры</a></span>
+                <span><mat-slide-toggle>Фильтры</mat-slide-toggle></span>
             </mat-toolbar>
         </div>
-        <div class="component-filter">
-            <hr class="line">
+        <div class="h-[100px] my-[10px] bg-white box shadow-lg">
+            <hr class="w-full h-[3px] bg-green-400 ">
             <mat-toolbar style="display: flex; justify-content: space-between;">
                 <span><a href="#">Обновить таблицу</a></span>
                 <span><a href="#" style="align-items: right;">Фильтры</a></span>
             </mat-toolbar>
         </div>
         
-          <div class="content" style="height:1000px;">
-            <hr class="line">
+          <div class="h-[1000px]">
             <div fxLayout="row wrap" fxLayoutGap="16px grid" >
               <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
                    infinite-scroll
@@ -29,8 +28,9 @@
                    [infiniteScrollThrottle]="100"
                    (scrolled)="onScroll()"
                    *ngFor="let people of humans">
-                   <a style="text-decoration: none; color:black" routerLink="{{people.name}}/information">
+                    <a routerLink="{{people.name}}/information">
                     <mat-card class="example-card">
+                      <hr class="w-full h-[3px] bg-green-400">
                         <mat-card-header>
                           <div mat-card-avatar class="example-header-image"></div>
                           <mat-card-title>Имя: <br>{{ people.name }}</mat-card-title>

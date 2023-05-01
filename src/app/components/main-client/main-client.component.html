@@ -1,8 +1,8 @@
-<div class="component" style="height: 50px; margin-top: 10px;">
-    <hr class="line">
-    <div style="display: flex; align-items: center; justify-content: space-between;">
+<div class="bg-white shadow-lg h-[50px] mt-[10px]">
+    <hr class="w-full h-[3px] bg-green-400">
+    <div class="flex items-center justify-between">
 
-        <nav mat-tab-nav-bar [tabPanel]="tabPanel" style="width: 100%;">
+        <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="w-full">
             <a mat-tab-link routerLink="./information" routerLinkActive="active-link">Информация</a>
             <a mat-tab-link routerLink="./documents" routerLinkActive="active-link">Документы</a>
             <a mat-tab-link routerLink="./serviceplans" routerLinkActive="active-link">Сервисные планы</a>
