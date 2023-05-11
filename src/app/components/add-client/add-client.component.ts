@@ -1,5 +1,28 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { ModalAddDocumentComponent } from './modal-add-document/modal-add-document.component';
+import { MatDialog } from '@angular/material/dialog';
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+];
 
 @Component({
   selector: 'app-add-client',
@@ -7,24 +30,24 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./add-client.component.css']
 })
 export class AddClientComponent {
-  columnDefs = [{ field: "тип", width: 90 }, { field: "серия", width: 90 }, { field: "номер", width: 150 }];
 
-  isupdated = false;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  ngOnInit() {
-    this.isupdated=false; 
+  constructor(public dialog: MatDialog){}
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
-  studentupdateform=new FormGroup({  
-    student_id:new FormControl(),  
-    student_name:new FormControl(),  
-    student_email:new FormControl(),  
-    student_branch:new FormControl()  
-  });  
-
-  rowData = [
-    { тип: "Toyota", серия: "Celica", номер: 35000 },
-    { тип: "Ford", серия: "Mondeo", номер: 32000 },
-    { тип: "Porsche", серия: "Boxter", номер: 72000 }
-  ];
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ModalAddDocumentComponent, {
+      width: '500px',
+      height: '460px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 }

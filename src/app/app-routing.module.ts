@@ -8,11 +8,17 @@ import { MainClientDocumentsComponent } from './components/main-client-documents
 import { MainClientServicePlansComponent } from './components/main-client-service-plans/main-client-service-plans.component';
 import { MainClientReferencesComponent } from './components/main-client-references/main-client-references.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { AllclientsComponent } from './components/allclients/allclients.component';
+import { CalendarclientsComponent } from './components/calendarclients/calendarclients.component';
 
 const routes: Routes = [
   {path: '', component: AuthorizationComponent},
   {path: 'addClient', component: AddClientComponent},
-  {path: 'clients', component: MainIndexComponent},
+  {path: 'clients', component: MainIndexComponent, children:
+[
+  {path: 'allclients', component: AllclientsComponent},
+  {path: 'calendar', component: CalendarclientsComponent}
+]},
   {path: 'clients/:name', component: MainClientComponent, children: 
   [
     {path: 'information', component: MainClientInformationComponent},

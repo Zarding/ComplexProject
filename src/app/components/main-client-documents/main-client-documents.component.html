@@ -1,12 +1,37 @@
-<div class="mt-[10px]">
-<hr class="w-full h-[3px] bg-green-400">
-<div class="bg-white shadow-lg h-[70vh] mt-[10px] px-[5px]">
+<div class="flex my-[10px] h-[90vh]">
+<div class="component w-full">
     <div>
-        <ag-grid-angular 
-            class="ag-theme-material w-full h-[300px]"
-            [rowData]="rowData" 
-            [columnDefs]="columnDefs">
-        </ag-grid-angular>
+        <div class="h-full">
+            <div class="flex gap-4">
+                <label for="fName" class="label">Документы</label>
+                <label (click)="openDialog('0ms', '0ms')" for="fName" class="mb-1 block text-base font-medium text-[#07074D] hover:cursor-pointer hover:text-[#1616ca]">+Добавить</label>
+            </div>
+            <div>
+                <table mat-table [dataSource]="dataSource" matSort>
+         
+           <!-- Position Column -->
+           <ng-container matColumnDef="position">
+             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+               Работник
+             </th>
+             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+           </ng-container>
+           <!-- Symbol Column -->
+           <ng-container matColumnDef="symbol">
+             <th mat-header-cell *matHeaderCellDef>
+               Действия
+             </th>
+             <td mat-cell *matCellDef="let element" fxLayoutGap="5px">
+                <button mat-mini-fab color="primary"><mat-icon>edit</mat-icon></button>
+                <button mat-mini-fab color="primary"><mat-icon>pageview</mat-icon></button>
+            </td>
+           </ng-container>
+         
+           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+         </table>
+            </div>
+        </div>
     </div>
 </div>
 </div>

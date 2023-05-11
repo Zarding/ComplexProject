@@ -1,97 +1,219 @@
-<div class="bg-white shadow-lg h-[50px] mt-[10px] flex flex-col">
-    <hr class="w-full h-[3px] bg-green-400">
+<div class="component h-[50px] flex flex-col">
     <p class="pl-[10px] my-auto">Добавление клиента</p>
 </div>
-<div class="flex justify-between mt-[10px]">
-    <div style="width: 55%; margin-right: 10px; height: 100%;">
-        <hr class="w-full h-[3px] bg-green-400">
-        <div class="bg-white shadow-lg h-full px-[5px] mt-0">
-            <div style="display:flex; justify-content: space-between;">
-                <div style="width: 40%;">
-                    <p>Фото</p>
+<div class="flex sm:justify-between flex-col sm:flex-row">
+    <div class="sm:w-[55%] w-full component h-full pt-3 pb-5">
+        <div class="h-full">
+            <div class="flex justify-between">
+                <div class="w-[40%]">
+                    <div class="w-full">
+                        <div class="mb-5">
+                            <label for="sName" class="label">Фото</label>
+                        </div>
+                    </div>
                 </div>
-                <div style="width: 55%;">
-                    <div>
-                        <p style="margin-bottom: 5px;">Фамилия</p>
-                        <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
+                <div class="w-[50%]">
+                    <div class="w-full">
+                        <div class="mb-0">
+                            <label for="sName" class="label">Фамилия</label>
+                            <input
+                                type="text"
+                                name="fName"
+                                id="fName"
+                                placeholder="Фамилия"
+                                class="input-text peer" required/>
+                                <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                                    *Заполните обязательное поле
+                                </p>
+                        </div>
                     </div>
-                    <div>
-                        <p style="margin-bottom: 5px;">Имя</p>
-                        <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
+                    <div class="w-full">
+                        <div class="mb-0">
+                            <label for="fName" class="label">Имя</label>
+                            <input
+                                type="text"
+                                name="fName"
+                                id="fName"
+                                placeholder="Имя"
+                                class="input-text peer" required/>
+                                <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                                    *Заполните обязательное поле
+                                </p>
+                        </div>
                     </div>
-                    <div>
-                        <p style="margin-bottom: 5px;">Отчество</p>
-                        <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
+                    <div class="w-full">
+                        <div class="mb-0">
+                            <label for="fName" class="label">Отчество</label>
+                            <input
+                                type="text"
+                                name="fName"
+                                id="fName"
+                                placeholder="Отчество"
+                                class="input-text peer" required/>
+                                <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                                    *Заполните обязательное поле
+                                </p>
+                        </div>
                     </div>
                     <div class="flex justify-between">
-                        <div class="w-[30%] mr-[5px]">
-                            <p style="margin-bottom: 5px;">Пол</p>
-                            <input type="text" class="w-[80%]">
+                        <div class="w-[40%] sm:w-[50%] mr-[5px]">
+                            <label for="fName" class="label">Пол</label>
+                            <select class="input-text w-[50%]" id="inputGroupSelect01">
+                                <option selected>Муж.</option>
+                                <option value="1">Жен.</option>
+                            </select>
                         </div>
-                        <div class="w-[70%]">
-                            <p style="margin-bottom: 5px;">Дата рождения</p>
-                            
-                            <input type="date">
-                        </div>
+                        <div class="w-[60%] sm:w-[50%]">
+                            <div class="mb-5">
+                              <label for="date" class="label">Дата рождения</label>
+                              <input
+                                type="date"
+                                name="date"
+                                id="date"
+                                class="input-text"/>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <p style="margin-bottom: 5px;">Место рождения</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Место рождения</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Место рождения"
+                        class="input-text"/>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Место последнего проживания</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Место последнего проживания"
+                        class="input-text"/>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Место последней регистрации</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Место последней регистрации"
+                        class="input-text"/>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Социальный статус</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Социальный статус"
+                        class="input-text"/>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Признак маломобильности</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Признак маломобильности"
+                        class="input-text"/>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Снилс</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Снилс"
+                        class="input-text"/>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-5">
+                    <label for="fName" class="label">Полис ОМС</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Полис ОМС"
+                        class="input-text"/>
+                </div>
             </div>
             <div>
-                <p style="margin-bottom: 5px;">Место последнего проживания</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
-            </div>
-            <div>
-                <p style="margin-bottom: 5px;">Место последней регистрации</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
-            </div>
-            <div>
-                <p style="margin-bottom: 5px;">Социальный статус</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
-            </div>
-            <div>
-                <p style="margin-bottom: 5px;">Признак маломобильности</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
-            </div>
-            <div>
-                <p style="margin-bottom: 5px;">Снилс</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
-            </div>
-            <div>
-                <p style="margin-bottom: 5px;">Полис ОМС</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
-            </div>
-            <div>
-                <p style="margin-bottom: 5px;">Социальный работник</p>
-                <input type="text" name="input" ng-model="example.text" ng-pattern="example.word" required ng-trim="false" style="width: 95%;">
+                <label for="fName" class="label">Социальный работник</label>
+                <select class="input-text w-[50%]" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                    <option value="1">Муж.</option>
+                    <option value="2">Жен.</option>
+                </select>
             </div>
         </div>
         <div>
         </div>
     </div>
     
-    <div class="w-[45%] ml-[10px]">
-        <hr class="w-full h-[3px] bg-green-400">
-        <div class="bg-white shadow-lg h-full px-[5px] mt-0 relative pt-0">
-            <div class="flex">
-                <p class="mt-0 ml-[5px] mr-[15px]">Документы</p>
-                <button>+Добавить</button>
-            </div>
-            <div>
-                <ag-grid-angular 
-                    class="ag-theme-material w-full h-[300px]"
-                    [rowData]="rowData" 
-                    [columnDefs]="columnDefs">
-                </ag-grid-angular>
-            </div>
-            <div class="absolute bottom-[10px] right-[10px] bg-sky-300">
-                <button>
-                    <p>Создать</p>
-                </button>
-            </div>
+    <div class="sm:w-[45%] w-full h-[30%] ml-[10px] pt-3 pb-5 component flex flex-col">
+        <div class="flex gap-4">
+            <label for="fName" class="label">Документы</label>
+            <label (click)="openDialog('0ms', '0ms')" for="fName" class="mb-1 block text-base font-medium text-[#07074D] hover:cursor-pointer hover:text-[#1616ca]">+Добавить</label>
+        </div>
+        <div>
+            <table mat-table [dataSource]="dataSource" matSort
+            class="">
+     
+       <!-- Position Column -->
+       <ng-container matColumnDef="position">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+           Тип
+         </th>
+         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+       </ng-container>
+     
+       <!-- Name Column -->
+       <ng-container matColumnDef="name">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+           Серия
+         </th>
+         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+       </ng-container>
+     
+       <!-- Weight Column -->
+       <ng-container matColumnDef="weight">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+           Номер
+         </th>
+         <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+       </ng-container>
+     
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="symbol">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+           Действия
+         </th>
+         <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+       </ng-container>
+     
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+        </div>
+        <div class="w-[20%] ml-auto mr-0">
+            <button class="button">Создать</button>
         </div>
     </div>
+
 </div>

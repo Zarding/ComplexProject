@@ -1,0 +1,77 @@
+<div class="component">
+    <label for="fName" class="label">Добавить документ</label>
+    <div class="w-full">
+        <div>
+            <label for="fName" class="label">Тип</label>
+            <select class="input-text w-[50%]" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">Муж.</option>
+                <option value="2">Жен.</option>
+            </select>
+        </div>
+        <div class="flex justify-between gap-4">
+            <div class="w-[50%]">
+                <div class="mb-0">
+                    <label for="sName" class="label">Серия</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Серия"
+                        class="input-text peer" required/>
+                        <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                            *Обязательное поле
+                        </p>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="mb-0">
+                    <label for="sName" class="label">Номер</label>
+                    <input
+                        type="text"
+                        name="fName"
+                        id="fName"
+                        placeholder="Номер"
+                        class="input-text peer" required/>
+                        <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                            *Обязательное поле
+                        </p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="mb-0">
+                <label for="sName" class="label">Кем выдан</label>
+                <input
+                    type="text"
+                    name="fName"
+                    id="fName"
+                    placeholder="Кем выдан"
+                    class="input-text peer" required/>
+                    <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                        *Обязательное поле
+                    </p>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="mb-0">
+                <label for="sName" class="label">Когда выдан</label>
+                <input
+                    type="text"
+                    name="fName"
+                    id="fName"
+                    placeholder="Когда выдан"
+                    class="input-text peer" required/>
+                    <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
+                        *Обязательное поле
+                    </p>
+            </div>
+        </div>
+    </div>
+        <div class="w-[50%] ml-auto mr-0">
+            <div class="flex justify-between gap-4">
+            <button class="button_apply" (click)="onAddClick()">Добавить</button>
+            <button class="button_cancel" (click)="onNoClick()">Отмена</button>
+            </div>
+        </div>
+</div>

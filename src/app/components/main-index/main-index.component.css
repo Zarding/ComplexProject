@@ -1,34 +1,10 @@
-.example-card {
-    max-width: 400px;
-    -webkit-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    background-color: white;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-  
-  .example-spacer {
-    flex: 1 1 auto;
-    background-color: white;
-  }
 .component {
-    -webkit-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    background-color: white;
-    height: 40px;
+  @apply my-[10px] bg-white shadow-xl rounded-2xl px-[10px] mx-[5px] transition-all
 }
-.component-filter {
-    -webkit-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    background-color: white;
-    height: 100px;
+.card {
+  @apply bg-white shadow-xl rounded-2xl hover:text-red-400
 }
+
 mat-card {
     cursor: pointer;
 }

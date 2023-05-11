@@ -6,7 +6,11 @@
 @import 'ag-grid-community/styles/ag-theme-material.css';
 
 html, body {
-    height: auto;
-    margin-left: 2px;
-    margin-right: 2px;
+    @apply h-auto bg-gradient-to-tr from-green-50 via-green-100 to-green-200
+}
+
+mat-dialog-container#modal-component {
+    border: 3px solid #262626;
+    border-radius: 11px;
+    background-color: #1a1a1a;
 }

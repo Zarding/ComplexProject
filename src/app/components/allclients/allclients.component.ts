@@ -1,14 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import {HumanService} from "../../../api/service/human-service.service";
 import {Human} from "../../../api/model/Human";
 import { Title } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-main-index',
-  templateUrl: './main-index.component.html',
-  styleUrls: ['./main-index.component.css']
+  selector: 'app-allclients',
+  templateUrl: './allclients.component.html',
+  styleUrls: ['./allclients.component.css']
 })
-export class MainIndexComponent {
+export class AllclientsComponent {
   isShowDiv = false;
   component: HTMLElement | undefined;
   toggleDisplayDiv() {
@@ -32,4 +32,5 @@ export class MainIndexComponent {
     this.humService.getHumans(this.page++).subscribe((humant : Human[]) => this.humans = humant);
     
 }
+
 }

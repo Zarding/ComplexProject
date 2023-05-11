@@ -1,13 +1,24 @@
 .component {
-    -webkit-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    box-shadow: 8px 6px 21px 9px rgba(34, 60, 80, 0.2);
-    background-color: white;
+    @apply my-[10px] bg-white shadow-xl rounded-2xl px-[10px] mx-[5px]
+  }
+.label {
+    @apply mb-1 block text-base font-medium text-[#07074D]
 }
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: greenyellow;
-    padding: 0px;
-    margin: 0px;
+.input-text {
+    @apply w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-2 text-base font-medium text-[#6B7280] outline-none focus:border-green-500 focus:shadow-md
+}
+.button-edit {
+    @apply flex justify-center rounded-md bg-green-500 px-2 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+}
+.button-delete {
+    @apply flex justify-center rounded-md bg-red-500 px-2 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+}
+.mat-column-position {
+    @apply w-[65%]
+}
+.mat-column-symbol {
+    @apply w-[35%]
+}
+table {
+    @apply w-full
 }
