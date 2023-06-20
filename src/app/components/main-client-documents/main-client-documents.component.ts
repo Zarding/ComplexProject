@@ -4,17 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ModalAddDocumentComponent } from '../add-client/modal-add-document/modal-add-document.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ClientService } from 'src/app/services/client.service';
+import { UserService } from 'src/app/services/user.service';
+import { DocumentService } from 'src/app/services/document.service';
 
-export interface PeriodicElement {
-  name: string;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Hydrogen', symbol: 'H'},
-  {name: 'Helium', symbol: 'He'},
-  {name: 'Lithium', symbol: 'Li'},
-  {name: 'Beryllium', symbol: 'Be'},
-];
+const Documents: Document[] = [];
 
 @Component({
   selector: 'app-main-client-documents',
@@ -22,30 +16,45 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./main-client-documents.component.css']
 })
 export class MainClientDocumentsComponent {
-  constructor(private route: ActivatedRoute, public dialog: MatDialog){}
-  displayedColumns: string[] = ['position', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private clientServ: ClientService, public userServ: UserService, private docServ: DocumentService){}
+  displayedColumns?: string[];
+  
+
+  id!: number;
+  dataSource! : Document[];
 
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+
   }
 
   name!: number;
 
   ngOnInit(): void{
-    this.name = +this.route.snapshot.paramMap.get('name')!;
-
-    console.log(this.name);
+    if (this.userServ.role == 1)
+      this.displayedColumns = ['type', 'serial', 'number', 'organ', 'date', 'action'];
+    else this.displayedColumns = ['type', 'serial', 'number', 'organ', 'date'];
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+    })
+    this.clientServ.findDocumentById(this.id).subscribe((data) => {
+      this.dataSource = data;
+    })
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ModalAddDocumentComponent, {
+    let dialogRef = this.dialog.open(ModalAddDocumentComponent, {
       width: '500px',
       height: '460px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
+
+    dialogRef.componentInstance.onAdd.subscribe(document => {
+
+      this.docServ.save(document);
+      alert("ДОБАВЛЕНИЕ");   
+    })
   }
 }

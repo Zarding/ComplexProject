@@ -4,17 +4,15 @@
     </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form (submit)="login()" class="space-y-6" action="#" method="POST">
         <div>
             <div class="flex items-center justify-between">
                 <label for="login" class="label">Пользователь</label>
             </div>
             <div class="mt-2">
-              <select class="input-text w-[50%]" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">Муж.</option>
-                <option value="2">Жен.</option>
-            </select>
+              <select name="id" [(ngModel)]="user" class="input-text w-[50%]">
+                <option *ngFor="let user of users" [ngValue]="user">{{user.login}}</option>
+             </select>
             </div>
 
         </div>
@@ -25,12 +23,12 @@
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Пароль</label>
           </div>
           <div class="mt-2">
-            <input id="password" name="password" type="password" autocomplete="current-password" required class="input-text">
+            <input name="password" type="password" class="input-text" [(ngModel)]="password">
           </div>
         </div>
   
         <div>
-          <button type="submit" class="button" routerLink="clients">Вход</button>
+          <button type="submit" class="button">Вход</button>
         </div>
       </form>
     </div>

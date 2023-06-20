@@ -2,10 +2,10 @@
     <div class="component h-[40px] flex flex-col">
         <div class="flex justify-between my-auto">
             <span><a href="#">Обновить таблицу</a></span>
-            <span><mat-slide-toggle (click)=toggleDisplayDiv()>Фильтры</mat-slide-toggle></span>
+            <span><mat-slide-toggle checked="true" (change)=toggleDisplayDiv()>Фильтры</mat-slide-toggle></span>
         </div>
     </div>
-    <div id="myComponent" class="h-[100px] component" [style.opacity]="!isShowDiv ? '0' : '1'" [style.visibility]="!isShowDiv ? 'hidden' : 'visible'">
+    <div id="myComponent" class="h-[100px] component" [style.opacity]="!isShowDiv ? '0' : '1'">
         <div class="flex justify-between">
             <span><a href="#">Обновить таблицу</a></span>
             <span><a href="#" style="align-items: right;">Фильтры</a></span>
@@ -21,20 +21,19 @@
                  [infiniteScrollDistance]="2"
                  [infiniteScrollThrottle]="100"
                  (scrolled)="onScroll()"
-                 *ngFor="let people of humans">
-                  <a routerLink="{{people.name}}/information">
+                 *ngFor="let client of clients">
+                  <a routerLink="../{{client.id}}/information" [queryParams]="{id: client.id}">
                   <mat-card class="card">
                       <mat-card-header>
-                        <div mat-card-avatar class="bg-cover"><img src="{{people.picture}}" class="foto"></div>
-                        <mat-card-title class="text-xs">Имя: {{ people.name }}</mat-card-title>
-                        <mat-card-subtitle>Возраст: {{people.dob}}</mat-card-subtitle>
+                        <mat-card-title class="text-xs">Имя: {{ client.name }}</mat-card-title>
+                        <mat-card-subtitle>Возраст: {{client.secondname}}</mat-card-subtitle>
                       </mat-card-header>
                       <br>
                       
                       <mat-card-content>
                         <br>
                         <p>
-                          Пол: {{people.gender}}
+                          Пол: Муж.
                         </p>
                       </mat-card-content>
                     </mat-card>

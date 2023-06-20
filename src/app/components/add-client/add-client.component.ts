@@ -4,25 +4,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ModalAddDocumentComponent } from './modal-add-document/modal-add-document.component';
 import { MatDialog } from '@angular/material/dialog';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { Client } from 'src/app/class/client';
+import { ClientService } from 'src/app/services/client.service';
+import { Router } from '@angular/router';
+import { Socialstatus } from 'src/app/class/socialstatus';
+import { SocialstatusService } from 'src/app/services/socialstatus.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/class/user';
+import { UserClient } from 'src/app/class/userclient';
 
 @Component({
   selector: 'app-add-client',
@@ -31,23 +20,71 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AddClientComponent {
 
+  client: Client = new Client();
+  id!: number;
+  workers?: User[];
+  worker? : User;
+  usClient? : UserClient;
+  selectedSex?: string;
+  socialstatuses? : Socialstatus[];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource : Document[] = [];
+  dataSoruce1 = new MatTableDataSource();
 
-  constructor(public dialog: MatDialog){}
+  constructor(public dialog: MatDialog, public userServ: UserService, private clientServ: ClientService, private router: Router, private socialServ: SocialstatusService){}
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(ModalAddDocumentComponent) modal! : ModalAddDocumentComponent;
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+
+  }
+
+  ngOnInit() : void {
+    this.usClient = new UserClient();
+    this.socialServ.findAll().subscribe((data) => {
+      this.socialstatuses = data;
+      this.client.idSocialStatus = data[0];
+    })
+    this.userServ.findWorkers().subscribe((data) => {
+      this.workers = data;
+      this.worker = data[0];
+    })
+    this.client.sex = "Муж.";
+    this.client.dateOfBirth = new Date();
+    this.dataSoruce1.data = this.dataSource;
+  }
+
+  onSubmit() {
+    this.client.documents = this.dataSource;
+    this.usClient!.idUser = this.worker;
+    this.client.userClients = this.usClient;
+    this.clientServ.save(this.client, this.worker?.id!).subscribe(
+      () =>{
+        this.gotoUserList();
+      }
+    );
+
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ModalAddDocumentComponent, {
+    let dialogRef = this.dialog.open(ModalAddDocumentComponent, {
       width: '500px',
       height: '460px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
+
+    dialogRef.componentInstance.onAdd.subscribe(document => {
+      this.dataSource.push(document);
+      this.dataSoruce1.data = this.dataSource;
+      this.dataSoruce1.connect();
+    })
+  }
+
+  gotoUserList() {
+    if (this.userServ.role == 1)
+      this.router.navigate(['/clients/allclients']);
+      else this.router.navigate(['/clients/calendar']);
   }
 }

@@ -1,27 +1,31 @@
 <div class="component h-[50px] flex flex-col">
     <p class="pl-[10px] my-auto">Добавление клиента</p>
 </div>
+<form (ngSubmit)="onSubmit()" method="POST" style="gap: 20px 5px;">
 <div class="flex sm:justify-between flex-col sm:flex-row">
+    
     <div class="sm:w-[55%] w-full component h-full pt-3 pb-5">
         <div class="h-full">
             <div class="flex justify-between">
                 <div class="w-[40%]">
                     <div class="w-full">
                         <div class="mb-5">
-                            <label for="sName" class="label">Фото</label>
+                            <label class="label">Фото</label>
                         </div>
                     </div>
                 </div>
                 <div class="w-[50%]">
                     <div class="w-full">
                         <div class="mb-0">
-                            <label for="sName" class="label">Фамилия</label>
+                            <label for="secondname" class="label">Фамилия</label>
                             <input
                                 type="text"
-                                name="fName"
-                                id="fName"
+                                [(ngModel)]="client.secondname"
+                                name="secondname"
+                                id="secondname"
                                 placeholder="Фамилия"
-                                class="input-text peer" required/>
+                                class="input-text peer" required
+                                #secondname="ngModel"/>
                                 <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
                                     *Заполните обязательное поле
                                 </p>
@@ -29,38 +33,38 @@
                     </div>
                     <div class="w-full">
                         <div class="mb-0">
-                            <label for="fName" class="label">Имя</label>
+                            <label for="name" class="label">Имя</label>
                             <input
                                 type="text"
-                                name="fName"
-                                id="fName"
+                                name="name"
+                                [(ngModel)]="client.name"
+                                id="name"
                                 placeholder="Имя"
-                                class="input-text peer" required/>
+                                class="input-text peer" required
+                                #name="ngModel"/>
                                 <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
                                     *Заполните обязательное поле
                                 </p>
                         </div>
                     </div>
                     <div class="w-full">
-                        <div class="mb-0">
-                            <label for="fName" class="label">Отчество</label>
+                        <div class="mb-5">
+                            <label for="oName" class="label">Отчество</label>
                             <input
                                 type="text"
+                                [(ngModel)]="client.otchestvo"
                                 name="fName"
                                 id="fName"
                                 placeholder="Отчество"
-                                class="input-text peer" required/>
-                                <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
-                                    *Заполните обязательное поле
-                                </p>
+                                class="input-text"/>
                         </div>
                     </div>
                     <div class="flex justify-between">
-                        <div class="w-[40%] sm:w-[50%] mr-[5px]">
+                        <div class="w-[40%] sm:w-[50%] mr-[5px] form-group">
                             <label for="fName" class="label">Пол</label>
-                            <select class="input-text w-[50%]" id="inputGroupSelect01">
-                                <option selected>Муж.</option>
-                                <option value="1">Жен.</option>
+                            <select name="sex" class="input-text w-[50%] form-control" [(ngModel)]="client.sex">
+                                <option th:value="Муж.">Муж.</option>
+                                <option th:value="Жен.">Жен.</option>
                             </select>
                         </div>
                         <div class="w-[60%] sm:w-[50%]">
@@ -69,10 +73,11 @@
                               <input
                                 type="date"
                                 name="date"
+                                [(ngModel)]="client.dateOfBirth"
                                 id="date"
                                 class="input-text"/>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,6 +87,7 @@
                     <input
                         type="text"
                         name="fName"
+                        [(ngModel)]="client.placeOfBirth"
                         id="fName"
                         placeholder="Место рождения"
                         class="input-text"/>
@@ -93,6 +99,7 @@
                     <input
                         type="text"
                         name="fName"
+                        [(ngModel)]="client.placeLastLive"
                         id="fName"
                         placeholder="Место последнего проживания"
                         class="input-text"/>
@@ -104,20 +111,18 @@
                     <input
                         type="text"
                         name="fName"
+                        [(ngModel)]="client.placeLastReg"
                         id="fName"
                         placeholder="Место последней регистрации"
                         class="input-text"/>
                 </div>
             </div>
             <div class="w-full">
-                <div class="mb-5">
+                <div class="mb-5 form-group">
                     <label for="fName" class="label">Социальный статус</label>
-                    <input
-                        type="text"
-                        name="fName"
-                        id="fName"
-                        placeholder="Социальный статус"
-                        class="input-text"/>
+                    <select name="idSocialStatus" class="input-text form-control" [(ngModel)]="client.idSocialStatus">
+                        <option *ngFor="let socialstatus of socialstatuses" [ngValue]="socialstatus">{{socialstatus.name}}</option>
+                   </select>
                 </div>
             </div>
             <div class="w-full">
@@ -126,6 +131,7 @@
                     <input
                         type="text"
                         name="fName"
+                        [(ngModel)]="client.attribute"
                         id="fName"
                         placeholder="Признак маломобильности"
                         class="input-text"/>
@@ -137,8 +143,9 @@
                     <input
                         type="text"
                         name="fName"
+                        [(ngModel)]="client.snils"
                         id="fName"
-                        placeholder="Снилс"
+                        placeholder="000-000-000 00"
                         class="input-text"/>
                 </div>
             </div>
@@ -148,18 +155,17 @@
                     <input
                         type="text"
                         name="fName"
+                        [(ngModel)]="client.polisOms"
                         id="fName"
                         placeholder="Полис ОМС"
                         class="input-text"/>
                 </div>
             </div>
-            <div>
+            <div *ngIf="userServ.role == 1" class="form-group">
                 <label for="fName" class="label">Социальный работник</label>
-                <select class="input-text w-[50%]" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
-                    <option value="1">Муж.</option>
-                    <option value="2">Жен.</option>
-                </select>
+                <select name="userClients" class="input-text form-control" [(ngModel)]="worker">
+                    <option *ngFor="let worker of workers" [ngValue]="worker">{{worker.login}}</option>
+               </select>
             </div>
         </div>
         <div>
@@ -172,31 +178,31 @@
             <label (click)="openDialog('0ms', '0ms')" for="fName" class="mb-1 block text-base font-medium text-[#07074D] hover:cursor-pointer hover:text-[#1616ca]">+Добавить</label>
         </div>
         <div>
-            <table mat-table [dataSource]="dataSource" matSort
+            <table mat-table [dataSource]="dataSoruce1" matSort
             class="">
      
        <!-- Position Column -->
        <ng-container matColumnDef="position">
-         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
            Тип
          </th>
-         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+         <td mat-cell *matCellDef="let element"> {{element.idTypeDocument.name}} </td>
        </ng-container>
      
        <!-- Name Column -->
        <ng-container matColumnDef="name">
-         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by serial">
            Серия
          </th>
-         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+         <td mat-cell *matCellDef="let element"> {{element.serial}} </td>
        </ng-container>
      
        <!-- Weight Column -->
        <ng-container matColumnDef="weight">
-         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
            Номер
          </th>
-         <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+         <td mat-cell *matCellDef="let element"> {{element.number}} </td>
        </ng-container>
      
        <!-- Symbol Column -->
@@ -204,16 +210,18 @@
          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
            Действия
          </th>
-         <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+         <td mat-cell *matCellDef="let element"> 
+            <button mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
+        </td>
        </ng-container>
      
        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
      </table>
         </div>
-        <div class="w-[20%] ml-auto mr-0">
-            <button class="button">Создать</button>
+        <div class="w-[20%] ml-auto mr-0 mt-5" *ngIf="name.valid && secondname.valid">
+            <button class="button" type="submit">Создать</button>
         </div>
     </div>
-
 </div>
+</form>

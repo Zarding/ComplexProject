@@ -1,0 +1,41 @@
+<div class="component">
+    <label for="fName" class="label">Добавить справку</label>
+    <div class="w-full">
+        <div class="mb-5">
+            <label for="fName" class="label">Тип</label>
+            <select name="idTypeDocument" [(ngModel)]="reference.typeReference" class="input-text">
+                <option *ngFor="let typereference of typereferences" [ngValue]="typereference">{{typereference.type}}</option>
+           </select>
+        </div>
+        <div class="w-full">
+            <div class="mb-5">
+                <label for="sName" class="label">Содержание справки</label>
+                <input
+                    type="text"
+                    name="fName"
+                    [(ngModel)]="reference.content"
+                    id="fName"
+                    placeholder="Содержание справки"
+                    class="input-text"/>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="mb-5">
+                <label for="sName" class="label">Дата выдачи</label>
+                <input
+                    type="date"
+                    name="date"
+                    [(ngModel)]="reference.date"
+                    id="fName"
+                    placeholder="Когда выдан"
+                    class="input-text"/>
+            </div>
+        </div>
+    </div>
+        <div class="w-[50%] ml-auto mr-0">
+            <div class="flex justify-between gap-4">
+            <button class="button_apply" (click)="onAddClick()">Добавить</button>
+            <button class="button_cancel" (click)="onNoClick()">Отмена</button>
+            </div>
+        </div>
+</div>

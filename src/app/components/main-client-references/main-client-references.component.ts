@@ -1,5 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ModalAddDocumentComponent } from '../add-client/modal-add-document/modal-add-document.component';
+import { Reference } from 'src/app/class/reference';
+import { ClientService } from 'src/app/services/client.service';
+import { UserService } from 'src/app/services/user.service';
+import { ModalAddReferenceComponent } from './modal-add-reference/modal-add-reference.component';
+import { ReferencesService } from 'src/app/services/references.service';
+
+const References: Reference[] = [];
 
 @Component({
   selector: 'app-main-client-references',
@@ -8,21 +19,43 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MainClientReferencesComponent {
 
-  constructor(private route: ActivatedRoute, private router: Router){}
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private refServ: ReferencesService, private clientServ: ClientService, private userServ: UserService){}
+  displayedColumns?: string[];
+  dataSource : Reference[] = [];
+  dataSoruce1 = new MatTableDataSource();
+  id!: number;
 
-  name!: number;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngAfterViewInit() {
+
+  }
 
   ngOnInit(): void{
-    this.name = +this.route.snapshot.paramMap.get('name')!;
-
-    console.log(this.name);
+    if (this.userServ.role == 2)
+    this.displayedColumns = ['type', 'content', 'date', 'who_give'];
+    else this.displayedColumns = ['type', 'content', 'date', 'who_give', 'action'];
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+    })
+    this.clientServ.findReferenceById(this.id).subscribe((data) => {
+      this.dataSource = data;
+    })
   }
-  
-  columnDefs = [{ field: "имя", width: 90 }];
 
-  rowData = [
-    { имя: "Toyota" },
-    { имя: "Ford" },
-    { имя: "Porsche" }
-  ];
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open(ModalAddReferenceComponent, {
+      width: '500px',
+      height: '370px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.componentInstance.onAdd.subscribe(reference => {
+      this.dataSource.push(reference);
+      this.dataSoruce1.data = this.dataSource;
+      this.dataSoruce1.connect();
+      this.refServ.save(reference);
+    })
+  }
 }

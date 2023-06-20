@@ -18,6 +18,8 @@
                         <label for="fName" class="label">ФИО</label>
                         <input
                             type="text"
+                            readonly
+                            [value]="client?.secondname + ' ' + client?.name + ' ' + client?.otchestvo"
                             name="fName"
                             id="fName"
                             class="input-text"/>
@@ -28,6 +30,8 @@
                         <label for="fName" class="label">Социальный статус</label>
                         <input
                             type="text"
+                            readonly
+                            [value]="client?.idSocialStatus?.name"
                             name="fName"
                             id="fName"
                             class="input-text"/>
@@ -37,8 +41,7 @@
                     <div class="w-[50%] mr-[5px]">
                         <label for="fName" class="label">Пол</label>
                         <select class="input-text w-[50%]" id="inputGroupSelect01">
-                            <option selected>Муж.</option>
-                            <option value="1">Жен.</option>
+                            <option [disabled]="true">{{client?.sex}}</option>
                         </select>
                     </div>
                     <div class="w-[50%]">
@@ -46,6 +49,8 @@
                           <label for="date" class="label">Дата рождения</label>
                           <input
                             type="date"
+                            readonly
+                            [value]="client?.dateOfBirth"
                             name="date"
                             id="date"
                             class="input-text"/>
@@ -57,7 +62,9 @@
                         <label for="fName" class="label">Место рождения</label>
                         <input
                             type="text"
+                            readonly
                             name="fName"
+                            [value]="client?.placeOfBirth"
                             id="fName"
                             class="input-text"/>
                     </div>
@@ -67,7 +74,9 @@
                         <label for="fName" class="label">Снилс</label>
                         <input
                             type="text"
+                            readonly
                             name="fName"
+                            [value]="client?.snils"
                             id="fName"
                             class="input-text"/>
                     </div>
@@ -86,7 +95,7 @@
                  <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
                    Работник
                  </th>
-                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                 <td mat-cell *matCellDef="let element"> {{element.idUser.login}} </td>
                </ng-container>
                <!-- Symbol Column -->
                <ng-container matColumnDef="symbol">
@@ -94,7 +103,6 @@
                    Действия
                  </th>
                  <td mat-cell *matCellDef="let element" fxLayoutGap="5px">
-                    <button mat-mini-fab color="primary"><mat-icon>edit</mat-icon></button>
                     <button mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
                 </td>
                </ng-container>
@@ -117,6 +125,8 @@
                             <label for="fName" class="label">Полис ОМС</label>
                             <input
                                 type="text"
+                                readonly
+                                [value]="client?.polisOms"
                                 name="fName"
                                 id="fName"
                                 class="input-text"/>
@@ -127,6 +137,8 @@
                         <label for="fName" class="label">Место последнего проживания</label>
                         <input
                             type="text"
+                            readonly
+                            [value]="client?.placeLastLive"
                             name="fName"
                             id="fName"
                             class="input-text"/>
@@ -139,7 +151,9 @@
                         <label for="fName" class="label">Место последней регистрации</label>
                         <input
                             type="text"
+                            readonly
                             name="fName"
+                            [value]="client?.placeLastReg"
                             id="fName"
                             class="input-text"/>
                     </div>
@@ -149,6 +163,8 @@
                         <label for="fName" class="label">Признак маломобильности</label>
                         <input
                             type="text"
+                            readonly
+                            [value]="client?.attribute"
                             name="fName"
                             id="fName"
                             class="input-text"/>

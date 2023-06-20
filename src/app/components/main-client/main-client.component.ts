@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from "@angular/platform-browser";
+import { ClientService } from 'src/app/services/client.service';
+import { Client } from 'src/app/class/client';
 
 @Component({
   selector: 'app-main-client',
@@ -8,15 +10,15 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ['./main-client.component.css']
 })
 export class MainClientComponent {
-  constructor(private titleService:Title, private route: ActivatedRoute, private router: Router){
-    this.titleService.setTitle('Клиент - ' + this.route.snapshot.paramMap.get('name')!);
+  constructor(private titleService:Title, private clientServ: ClientService, private route: ActivatedRoute, private router: Router){
+    
   }
 
-  name!: number;
+  public id = this.route.snapshot.paramMap.get('id');
+
+  client!: Client;
 
   ngOnInit(): void{
-    this.name = +this.route.snapshot.paramMap.get('name')!;
-
-    console.log(this.name);
+    this.id = this.route.snapshot.params['id'];
   }
 }

@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import {HumanService} from "../../../api/service/human-service.service";
 import {Human} from "../../../api/model/Human";
 import { Title } from "@angular/platform-browser";
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-index',
@@ -21,15 +23,11 @@ export class MainIndexComponent {
   gridColumns = 4;
   page = 1;
   humans: Human[] =[ ];
-  constructor(private titleService:Title, private humService: HumanService) {
+  constructor(private titleService:Title, public userServ: UserService, private route: Router) {
     this.titleService.setTitle("МКС");
   }
-  ngOnInit(): void {
-    this.humService.getHumans(this.page).subscribe((humant : Human[] ) =>this.humans = humant);
-  }
 
-    onScroll(): void {
-    this.humService.getHumans(this.page++).subscribe((humant : Human[]) => this.humans = humant);
+  ngOnInit() : void {
     
-}
+  }
 }

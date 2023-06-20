@@ -1,0 +1,18 @@
+.component {
+    @apply my-[10px] bg-white shadow-xl rounded-2xl px-[10px] mx-[5px]
+  }
+.label {
+    @apply mb-1 block text-base font-medium text-[#07074D]
+}
+.input-text {
+    @apply w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-2 text-base font-medium text-[#6B7280] outline-none focus:border-green-500 focus:shadow-md
+}
+.mat-column-position {
+    @apply w-[65%]
+}
+.mat-column-symbol {
+    @apply w-[35%]
+}
+table {
+    @apply w-full
+}

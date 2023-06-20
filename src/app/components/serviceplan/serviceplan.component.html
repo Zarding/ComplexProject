@@ -1,0 +1,107 @@
+<div class="flex flex-col my-[10px] h-[90vh] mr-[10px]">
+    <div class="component w-full flex gap-4">
+        <div class="w-[100px]">
+            <div class="mb-0">
+                <label for="sName" class="label">Номер</label>
+                <input
+                    type="text"
+                    readonly
+                    [value]="plan?.id"
+                    name="fName"
+                    id="fName"
+                    placeholder="Номер"
+                    class="input-text peer"/>
+            </div>
+        </div>
+        <div class="w-[200px]">
+            <div class="mb-5">
+              <label for="date" class="label">Дата начала</label>
+              <input
+                type="date"
+                name="date"
+                [value]="plan?.dateStart"
+                readonly
+                id="date"
+                class="input-text"/>
+            </div>
+        </div>
+        <div class="w-[200px]">
+            <div class="mb-5">
+              <label for="date" class="label">Дата завершения</label>
+              <input
+                type="date"
+                readonly
+                [value]="plan?.dateFinish"
+                name="date"
+                id="date"
+                class="input-text"/>
+            </div>
+        </div>
+        <div class="w-[200px] sm:w-[200px] mr-[5px]">
+            <label for="fName" class="label">Статус</label>
+            <select class="input-text w-[50%]" id="inputGroupSelect01">
+                <option>{{plan?.status}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="component w-full">
+        <div class="flex gap-4">
+            <label for="fName" class="label">Услуги</label>
+            <label (click)="openDialog('0ms', '0ms')" for="fName" class="mb-1 block text-base font-medium text-[#07074D] hover:cursor-pointer hover:text-[#1616ca]">+Добавить</label>
+        </div>
+        <div>
+            <table mat-table [dataSource]="dataSource" matSort>
+     
+       <!-- Position Column -->
+       <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+          Номер
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+       <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+          Название
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.idServices.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+          Работник
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.idUser.login}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+          Дата оказания
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateComplete}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+          Статус
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="action">
+         <th mat-header-cell *matHeaderCellDef>
+           Действия
+         </th>
+         <td mat-cell *matCellDef="let element" fxLayoutGap="5px">
+            <button mat-mini-fab color="primary"><mat-icon>edit</mat-icon></button>
+            <button mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
+        </td>
+       </ng-container>
+     
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+        </div>
+    </div>
+</div>
