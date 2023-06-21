@@ -15,12 +15,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MainClientServicePlansComponent implements OnInit {
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private clientServ: ClientService, public userServ: UserService){}
-  displayedColumns: string[] = ['id', 'date_start', 'date_finish', 'count_service', 'status', 'action'];
+  displayedColumns: string[] = ['id', 'date_start', 'date_finish', 'count_service', 'status'];
   dataSource! : Plan[];
   id!: number;
   count_services!: number;
-
-  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
 

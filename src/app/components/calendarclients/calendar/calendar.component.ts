@@ -24,6 +24,8 @@ import {DataService} from "./data.service";
     .container {
       display: flex;
       flex-direction: row;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
 
     .navigator {

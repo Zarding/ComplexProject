@@ -7,6 +7,9 @@ import { ModalAddDocumentComponent } from '../add-client/modal-add-document/moda
 import { Plan } from 'src/app/class/plan';
 import { ClientService } from 'src/app/services/client.service';
 import { TypeServicesPlan } from 'src/app/class/typeservicesplan';
+import { ModalAddServiceComponent } from '../main-client-service-plans/modal-add-service/modal-add-service.component';
+import { UserService } from 'src/app/services/user.service';
+import { ModalActionServiceComponent } from './modal-action-service/modal-action-service.component';
 
 @Component({
   selector: 'app-serviceplan',
@@ -14,10 +17,11 @@ import { TypeServicesPlan } from 'src/app/class/typeservicesplan';
   styleUrls: ['./serviceplan.component.css']
 })
 export class ServiceplanComponent {
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private clientServ: ClientService){}
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private clientServ: ClientService, public usServ: UserService){}
 
-  displayedColumns: string[] = ['id', 'name', 'user', 'date', 'status', 'action'];
+  displayedColumns: string[] = ['name', 'user', 'date', 'status', 'action'];
   dataSource! : TypeServicesPlan[];
+  dataSoruce1 = new MatTableDataSource();
   plan? : Plan;
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -34,15 +38,42 @@ export class ServiceplanComponent {
     })
     this.clientServ.findTypeServicesPlanByPlanId(this.id).subscribe((data) => {
       this.dataSource = data;
+      this.dataSoruce1.data = data;
+      this.dataSoruce1.connect();
     })
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ModalAddDocumentComponent, {
+    let dialogRef = this.dialog.open(ModalAddServiceComponent, {
       width: '500px',
-      height: '460px',
+      height: '560px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
+
+    dialogRef.componentInstance.onAdd.subscribe(typeservicesplan => {
+      this.dataSource.push(typeservicesplan);
+      this.dataSoruce1.data = this.dataSource;
+      this.dataSoruce1.connect();
+      //this.refServ.save(reference);
+    })
+  }
+
+  openDialogAction(element: TypeServicesPlan, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open(ModalActionServiceComponent, {
+      width: '500px',
+      height: '560px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    dialogRef.componentInstance.typeservicesplan = element;
+    dialogRef.componentInstance.onAdd.subscribe(typeservicesplan => {
+      this.clientServ.findTypeServicesPlanByPlanId(this.id).subscribe((data) => {
+        this.dataSource = data;
+        this.dataSoruce1.data = data;
+        this.dataSoruce1.connect();
+      })
+      //this.refServ.save(reference);
+    })
   }
 }

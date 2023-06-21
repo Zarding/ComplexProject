@@ -1,6 +1,6 @@
 	<div class="flex justify-between w-full h-[40px] px-[8px] sm:px-[14px] space-x-6 bg-white shadow-xl">
-    <a routerLink="clients/calendar" class="my-auto sm:text-base text-sm">{{title}}</a>
-	<a class="material-icons my-auto" routerLink="">logout</a>
+    <a routerLink="/" class="my-auto sm:text-base text-sm">{{title}}</a>
+	<button class="material-icons my-auto" (click)="logout()">logout</button>
 	</div>
 
 <router-outlet></router-outlet>

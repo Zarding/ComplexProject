@@ -1,6 +1,8 @@
 <div class="component">
+    
     <label for="fName" class="label">Добавить справку</label>
     <div class="w-full">
+        <form>
         <div class="mb-5">
             <label for="fName" class="label">Тип</label>
             <select name="idTypeDocument" [(ngModel)]="reference.typeReference" class="input-text">
@@ -31,10 +33,12 @@
                     class="input-text"/>
             </div>
         </div>
+    </form>
     </div>
         <div class="w-[50%] ml-auto mr-0">
             <div class="flex justify-between gap-4">
-            <button class="button_apply" (click)="onAddClick()">Добавить</button>
+                
+            <button class="button_apply" type="button" (click)="onAddClick()">Добавить</button>
             <button class="button_cancel" (click)="onNoClick()">Отмена</button>
             </div>
         </div>

@@ -36,6 +36,8 @@ import { AdminservicesComponent } from './components/administration/adminservice
 import { ServiceplanComponent } from './components/serviceplan/serviceplan.component';
 import { ModalAddReferenceComponent } from './components/main-client-references/modal-add-reference/modal-add-reference.component';
 import { ModalAddServiceComponent } from './components/main-client-service-plans/modal-add-service/modal-add-service.component';
+import { ModalActionServiceComponent } from './components/serviceplan/modal-action-service/modal-action-service.component';
+import { ModalAddUserclientComponent } from './components/main-client-information/modal-add-userclient/modal-add-userclient.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ModalAddServiceComponent } from './components/main-client-service-plans
     AdminservicesComponent,
     ServiceplanComponent,
     ModalAddReferenceComponent,
-    ModalAddServiceComponent
+    ModalAddServiceComponent,
+    ModalActionServiceComponent,
+    ModalAddUserclientComponent
   ],
   imports: [
     CalendarModule,

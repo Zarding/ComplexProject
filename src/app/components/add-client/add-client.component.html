@@ -211,7 +211,7 @@
            Действия
          </th>
          <td mat-cell *matCellDef="let element"> 
-            <button mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
+            <button (click)="del(element)" mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
         </td>
        </ng-container>
      

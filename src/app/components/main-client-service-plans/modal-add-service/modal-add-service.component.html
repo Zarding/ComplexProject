@@ -1,35 +1,32 @@
 <div class="component">
     <label for="fName" class="label">Добавить услугу</label>
     <div class="w-full">
-        <div>
+        <div class="mb-5">
             <label for="fName" class="label">Тип услуги</label>
-            <select name="idTypeDocument" class="input-text">
+            <select (change)="onChange()" name="idTypeDocument" [(ngModel)]="selectedtypeservices" class="input-text">
                 <option *ngFor="let typeservice of typeservices" [ngValue]="typeservice">{{typeservice.type}}</option>
            </select>
         </div>
-        <!-- <div>
+        <div class="mb-5">
             <label for="fName" class="label">Услуга</label>
-            <select name="idTypeDocument" [(ngModel)]="document.idTypeDocument" class="input-text">
-                <option *ngFor="let typeservice of typeservices" [ngValue]="typeservice">{{typeservice.type}}</option>
+            <select name="idTypeDocument" [(ngModel)]="typeservicesplan.idServices" class="input-text">
+                <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
            </select>
-        </div> -->
+        </div>
         <div class="w-full">
-            <div class="mb-0">
+            <div class="mb-5">
                 <label for="sName" class="label">Стоимость услуги</label>
                 <input
                     type="text"
                     name="fName"
                     [(ngModel)]="typeservicesplan.idServices!.price"
                     id="fName"
-                    placeholder="Кем выдан"
-                    class="input-text peer" required/>
-                    <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
-                        *Обязательное поле
-                    </p>
+                    placeholder="-"
+                    class="input-text peer"/>
             </div>
         </div>
         <div class="w-full">
-            <div class="mb-0">
+            <div class="mb-5">
                 <label for="sName" class="label">Дата оказания</label>
                 <input
                     type="date"
@@ -42,6 +39,12 @@
                         *Обязательное поле
                     </p>
             </div>
+        </div>
+        <div class="mb-5">
+            <label for="fName" class="label">Кем оказана</label>
+            <select name="idTypeDocument" [(ngModel)]="typeservicesplan.idUser" class="input-text">
+                <option *ngFor="let user of users" [ngValue]="user">{{user.login}}</option>
+           </select>
         </div>
     </div>
         <div class="w-[50%] ml-auto mr-0">

@@ -3,6 +3,9 @@ import { Reference } from 'src/app/class/reference';
 import { TypeReference } from 'src/app/class/typereference';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ReferencesService } from 'src/app/services/references.service';
+import { Client } from 'src/app/class/client';
+import { UserService } from 'src/app/services/user.service';
+import { ClientService } from 'src/app/services/client.service';
 
 
 @Component({
@@ -14,8 +17,9 @@ export class ModalAddReferenceComponent {
   typereferences! : TypeReference[];
   reference : Reference = new Reference();
   onAdd = new EventEmitter();
+  data?: number;
 
-  constructor(private dialogRef: MatDialogRef<ModalAddReferenceComponent>, public refServ : ReferencesService) {}
+  constructor(private dialogRef: MatDialogRef<ModalAddReferenceComponent>, public refServ : ReferencesService, private usServ: UserService, private clientServ: ClientService) {}
 
   ngOnInit(): void {
     this.refServ.findAllTypeReferences().subscribe(data => {
@@ -29,6 +33,11 @@ export class ModalAddReferenceComponent {
   }
   onAddClick(): void {
     this.onAdd.emit(this.reference);
-    this.dialogRef.close();
+    this.reference.idUser = this.usServ.user;
+    this.reference.idClient = new Client();
+    this.reference.idClient.id = this.data!;
+    this.refServ.save(this.reference).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 }

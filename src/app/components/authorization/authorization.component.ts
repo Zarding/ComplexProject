@@ -23,10 +23,17 @@ export class AuthorizationComponent implements OnInit {
   }
 
   ngOnInit() :void {
+    if(this.userServ.role != 3)
+    {
+      this.gotoUserList();
+    }
+    else
+    {
     this.userServ.findAll().subscribe(data => {
       this.users = data;
       this.user = data[0];
     });
+  }
   }
 
   login(){
@@ -34,5 +41,13 @@ export class AuthorizationComponent implements OnInit {
      this.userServ.authenticate(this.user);
      //this.user.login = "";
      this.password = "";
+  }
+
+  gotoUserList() {
+    if (this.userServ.role == 1)
+      this.router.navigate(['/clients/allclients']);
+      else if (this.userServ.role == 2) this.router.navigate(['/clients/calendar']);
+      else if (this.userServ.role == 0) this.router.navigate(['/administration/users']);
+      else this.router.navigate(['/']);
   }
 }

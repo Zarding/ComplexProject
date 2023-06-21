@@ -7,3 +7,6 @@
 .input-text {
     @apply w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-2 text-base font-medium text-[#6B7280] outline-none focus:border-green-500 focus:shadow-md
 }
+a {
+    @apply underline
+}

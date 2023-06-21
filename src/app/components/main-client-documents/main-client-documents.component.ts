@@ -22,8 +22,7 @@ export class MainClientDocumentsComponent {
 
   id!: number;
   dataSource! : Document[];
-
-  @ViewChild(MatSort) sort!: MatSort;
+  dataSoruce1 = new MatTableDataSource();
 
   ngAfterViewInit() {
 
@@ -40,6 +39,8 @@ export class MainClientDocumentsComponent {
     })
     this.clientServ.findDocumentById(this.id).subscribe((data) => {
       this.dataSource = data;
+      this.dataSoruce1.data = data;
+      this.dataSoruce1.connect();
     })
   }
 
@@ -50,11 +51,12 @@ export class MainClientDocumentsComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+    dialogRef.componentInstance.data = this.id;
 
     dialogRef.componentInstance.onAdd.subscribe(document => {
-
-      this.docServ.save(document);
-      alert("ДОБАВЛЕНИЕ");   
+      this.dataSource.push(document);
+      this.dataSoruce1.data = this.dataSource;
+      this.dataSoruce1.connect();
     })
   }
 }

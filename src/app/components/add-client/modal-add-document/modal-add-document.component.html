@@ -1,7 +1,8 @@
 <div class="component">
     <label for="fName" class="label">Добавить документ</label>
     <div class="w-full">
-        <div>
+        <form>
+        <div class="mb-5">
             <label for="fName" class="label">Тип</label>
             <select name="idTypeDocument" [(ngModel)]="document.idTypeDocument" class="input-text">
                 <option *ngFor="let typedocument of typedocuments" [ngValue]="typedocument">{{typedocument.name}}</option>
@@ -10,14 +11,17 @@
         <div class="flex justify-between gap-4">
             <div class="w-[50%]">
                 <div class="mb-0">
-                    <label for="sName" class="label">Серия</label>
+                    <label for="serial" class="label">Серия</label>
                     <input
+                    (keypress)="onKeyPress($event)"
                         type="text"
-                        name="fName"
+                        name="serial"
+                        [maxlength]="4"
                         [(ngModel)]="document.serial"
-                        id="fName"
+                        id="serial"
                         placeholder="Серия"
-                        class="input-text peer" required/>
+                        class="input-text peer" required
+                        #serial="ngModel"/>
                         <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
                             *Обязательное поле
                         </p>
@@ -25,14 +29,16 @@
             </div>
             <div class="w-full">
                 <div class="mb-0">
-                    <label for="sName" class="label">Номер</label>
+                    <label for="number" class="label">Номер</label>
                     <input
+                    (keypress)="onKeyPress($event)"
                         type="text"
-                        name="fName"
+                        name="number"
                         [(ngModel)]="document.number"
-                        id="fName"
+                        id="number"
                         placeholder="Номер"
-                        class="input-text peer" required/>
+                        class="input-text peer" required
+                        #number="ngModel"/>
                         <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
                             *Обязательное поле
                         </p>
@@ -40,7 +46,7 @@
             </div>
         </div>
         <div class="w-full">
-            <div class="mb-0">
+            <div class="mb-5">
                 <label for="sName" class="label">Кем выдан</label>
                 <input
                     type="text"
@@ -48,14 +54,11 @@
                     [(ngModel)]="document.organ"
                     id="fName"
                     placeholder="Кем выдан"
-                    class="input-text peer" required/>
-                    <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
-                        *Обязательное поле
-                    </p>
+                    class="input-text peer"/>
             </div>
         </div>
         <div class="w-full">
-            <div class="mb-0">
+            <div class="mb-5">
                 <label for="sName" class="label">Когда выдан</label>
                 <input
                     type="date"
@@ -63,16 +66,14 @@
                     [(ngModel)]="document.date"
                     id="fName"
                     placeholder="Когда выдан"
-                    class="input-text peer" required/>
-                    <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
-                        *Обязательное поле
-                    </p>
+                    class="input-text peer"/>
             </div>
         </div>
+    </form>
     </div>
         <div class="w-[50%] ml-auto mr-0">
             <div class="flex justify-between gap-4">
-            <button class="button_apply" (click)="onAddClick()">Добавить</button>
+            <button class="button_apply" (click)="onAddClick()" *ngIf="number.valid && serial.valid">Добавить</button>
             <button class="button_cancel" (click)="onNoClick()">Отмена</button>
             </div>
         </div>

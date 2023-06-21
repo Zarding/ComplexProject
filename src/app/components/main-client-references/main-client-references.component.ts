@@ -25,8 +25,6 @@ export class MainClientReferencesComponent {
   dataSoruce1 = new MatTableDataSource();
   id!: number;
 
-  @ViewChild(MatSort) sort!: MatSort;
-
   ngAfterViewInit() {
 
   }
@@ -40,6 +38,8 @@ export class MainClientReferencesComponent {
     })
     this.clientServ.findReferenceById(this.id).subscribe((data) => {
       this.dataSource = data;
+      this.dataSoruce1.data = data;
+      this.dataSoruce1.connect();
     })
   }
 
@@ -50,12 +50,12 @@ export class MainClientReferencesComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+    dialogRef.componentInstance.data = this.id;
 
     dialogRef.componentInstance.onAdd.subscribe(reference => {
       this.dataSource.push(reference);
       this.dataSoruce1.data = this.dataSource;
       this.dataSoruce1.connect();
-      this.refServ.save(reference);
     })
   }
 }

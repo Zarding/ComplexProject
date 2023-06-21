@@ -54,4 +54,12 @@ export class ClientService {
   public save(client : Client, id: number) {
     return this.http.post<Client>('http://localhost:8082/addclient/' + id, client);
   }
+
+  public addplan(tsp: TypeServicesPlan[]) {
+    return this.http.post<TypeServicesPlan[]>('http://localhost:8082/addplan', tsp);
+  }
+
+  public addtypeservicesplan(tsp: TypeServicesPlan[]) {
+    return this.http.post<TypeServicesPlan[]>('http://localhost:8082/addtypeservicesplan', tsp);
+  }
 }

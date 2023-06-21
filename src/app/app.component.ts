@@ -23,6 +23,8 @@ export class AppComponent {
 
   logout() : void {
     this.userService.authenticated = false;
+    this.userService.role = 3;
+    this.route.navigate(['/']);
   }
 
   nextPage() : void {

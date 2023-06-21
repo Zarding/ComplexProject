@@ -87,4 +87,12 @@ export class AddClientComponent {
       this.router.navigate(['/clients/allclients']);
       else this.router.navigate(['/clients/calendar']);
   }
+
+  del(element: Document) {
+    this.dataSource.forEach( (item, index) => {
+      if(item === element) this.dataSource.splice(index,1);
+    });
+    this.dataSoruce1.data = this.dataSource;
+    this.dataSoruce1.connect();
+  }
 }
