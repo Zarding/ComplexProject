@@ -8,11 +8,12 @@
 
 ## Требования
 
-Java 11, Node.js
+Java 11, Node.js, Maven
 
 ## Инструкция
 
-Для запуска Web сервиса необходимо запустить из корневой папки проект (ng serve).
+Для запуска Web сервиса необходимо запустить из корневой папки проект (ng serve). Для запуска Java сервера - java -jar path/to/your/jarfile.jar fully.qualified.package.Application
+mvn spring-boot:run
 
 ## Разработчик
 
