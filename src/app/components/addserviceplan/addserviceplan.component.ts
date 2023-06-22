@@ -50,7 +50,7 @@ export class AddServiceplanComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
     });
-
+    dialogRef.componentInstance.idclient = this.id;
     dialogRef.componentInstance.onAdd.subscribe(typeservicesplan => {
       this.dataSource.push(typeservicesplan);
       this.dataSoruce1.data = this.dataSource;

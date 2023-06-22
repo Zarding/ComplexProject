@@ -27,11 +27,11 @@ export class DataService {
   response : any;
 
   constructor(private http: HttpClient) { 
-    this.URL = 'http://localhost:8082/clientscalendar/2'
+    this.URL = 'http://localhost:8082/clientscalendar/'
   }
 
-  public findAll(): Observable<TypeServicesPlan[]> {
-    return this.http.get<TypeServicesPlan[]>(this.URL);
+  public findAll(id: number): Observable<TypeServicesPlan[]> {
+    return this.http.get<TypeServicesPlan[]>(this.URL + id);
   }
 
   getEvents(from: DayPilot.Date, to: DayPilot.Date): Observable<any[]> {

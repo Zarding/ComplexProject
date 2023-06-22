@@ -58,12 +58,17 @@ export class UserService {
             else this.role = Roles.NONE;
         } else {
             this.authenticated = false;
+            alert('Вы ввели неверный пароль');
         }
     });
 }
 
   public findWorkers(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:8082/userslist/workers');
+  }
+
+  public findWorkersByClient(id: number): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:8082/userslist/workersclient/' + id);
   }
 }
 

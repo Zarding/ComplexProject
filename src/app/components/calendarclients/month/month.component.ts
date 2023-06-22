@@ -5,6 +5,7 @@ import {DataService} from "./data.service";
 import { TypeServicesPlan } from "src/app/class/typeservicesplan";
 import { EventCalendar } from "src/app/class/event";
 import { Client } from "src/app/class/client";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: 'month-component',
@@ -111,7 +112,7 @@ export class MonthComponent implements AfterViewInit, OnInit {
     eventHoverHandling: "Disabled",
   };
 
-  constructor(private ds: DataService) {
+  constructor(private ds: DataService, private usServ: UserService) {
   }
 
   openClient() {
@@ -121,10 +122,8 @@ export class MonthComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     const from = this.month.control.visibleStart();
     const to = this.month.control.visibleEnd();
-    this.ds.findAll().subscribe(result => {
+    this.ds.findAll(this.usServ.user.id).subscribe(result => {
       this.typeservicesplans = result;
-      console.log(result);
-      console.log(result[3].idPlan?.idClient?.id);
       for(let i = 0; i<this.typeservicesplans.length; i++) {
         this.events.push(new EventCalendar(
           this.typeservicesplans[i].id!,

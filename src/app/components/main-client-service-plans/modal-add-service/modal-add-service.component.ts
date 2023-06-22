@@ -1,9 +1,12 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Client } from 'src/app/class/client';
+import { Plan } from 'src/app/class/plan';
 import { Services } from 'src/app/class/service';
 import { TypeService } from 'src/app/class/typeservice';
 import { TypeServicesPlan } from 'src/app/class/typeservicesplan';
 import { User } from 'src/app/class/user';
+import { ClientService } from 'src/app/services/client.service';
 import { ServicesService } from 'src/app/services/services.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,19 +16,22 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./modal-add-service.component.css']
 })
 export class ModalAddServiceComponent {
+  add : boolean = false;
+  idclient!: number;
   typeservices! : TypeService[];
   selectedtypeservices? : TypeService;
   services! : Services[];
   users? : User[];
+  plan!: Plan;
   typeservicesplan : TypeServicesPlan = new TypeServicesPlan();
   onAdd = new EventEmitter();
 
-  constructor(private dialogRef: MatDialogRef<ModalAddServiceComponent>, private usServ: UserService, public servServ : ServicesService) {}
+  constructor(private dialogRef: MatDialogRef<ModalAddServiceComponent>, private usServ: UserService, public servServ : ServicesService, private clientServ: ClientService) {}
 
   ngOnInit(): void {
     this.typeservicesplan.idServices = new Services();
     this.typeservicesplan.idUser = this.usServ.user;
-    this.usServ.findWorkers().subscribe((data) => {
+    this.usServ.findWorkersByClient(this.idclient).subscribe((data) => {
       this.users = data;
       this.typeservicesplan.idUser = data[0];
     })
@@ -45,7 +51,14 @@ export class ModalAddServiceComponent {
   }
   onAddClick(): void {
     this.onAdd.emit(this.typeservicesplan);
-    this.dialogRef.close();
+    if (this.add) {
+      this.typeservicesplan.status = 'Новый';
+      this.typeservicesplan.idPlan = this.plan;
+      this.clientServ.addtypeservicesplan(this.typeservicesplan).subscribe(() => {
+        this.dialogRef.close();
+      });
+    }
+    else this.dialogRef.close();
   }
   onChange(): void {
     this.servServ.findAllServicesByIdTypeServices(this.selectedtypeservices!.id).subscribe(data1 => {

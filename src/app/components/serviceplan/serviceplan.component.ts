@@ -49,7 +49,9 @@ export class ServiceplanComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
-
+    dialogRef.componentInstance.idclient = this.plan?.idClient?.id!;
+    dialogRef.componentInstance.plan = this.plan!;
+    dialogRef.componentInstance.add = true;
     dialogRef.componentInstance.onAdd.subscribe(typeservicesplan => {
       this.dataSource.push(typeservicesplan);
       this.dataSoruce1.data = this.dataSource;

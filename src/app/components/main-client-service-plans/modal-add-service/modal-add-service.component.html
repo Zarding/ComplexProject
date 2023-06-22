@@ -13,6 +13,7 @@
                 <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
            </select>
         </div>
+        <form>
         <div class="w-full">
             <div class="mb-5">
                 <label for="sName" class="label">Стоимость услуги</label>
@@ -28,19 +29,21 @@
         </div>
         <div class="w-full">
             <div class="mb-5">
-                <label for="sName" class="label">Дата оказания</label>
+                <label for="date" class="label">Дата оказания</label>
                 <input
                     type="date"
                     name="date"
                     [(ngModel)]="typeservicesplan.dateComplete"
-                    id="fName"
+                    id="date"
                     placeholder="Когда выдан"
-                    class="input-text peer" required/>
+                    class="input-text peer" required
+                    #date="ngModel"/>
                     <p class="invisible peer-invalid:visible peer-invalid:mb-2 text-red-700 font-light">
                         *Обязательное поле
                     </p>
             </div>
         </div>
+    </form>
         <div class="mb-5">
             <label for="fName" class="label">Кем оказана</label>
             <select name="idTypeDocument" [(ngModel)]="typeservicesplan.idUser" class="input-text">
@@ -50,7 +53,7 @@
     </div>
         <div class="w-[50%] ml-auto mr-0">
             <div class="flex justify-between gap-4">
-            <button class="button_apply" (click)="onAddClick()">Добавить</button>
+            <button *ngIf="date.valid" class="button_apply" (click)="onAddClick()">Добавить</button>
             <button class="button_cancel" (click)="onNoClick()">Отмена</button>
             </div>
         </div>

@@ -63,7 +63,7 @@ export class ClientService {
   }
 
   public save(client : Client, id: number, file: File) {
-    this.UploadFile(file);
+    //this.UploadFile(file);
     return this.http.post<Client>('http://localhost:8082/addclient/' + id, client);
   }
 
@@ -71,8 +71,8 @@ export class ClientService {
     return this.http.post<TypeServicesPlan[]>('http://localhost:8082/addplan', tsp);
   }
 
-  public addtypeservicesplan(tsp: TypeServicesPlan[]) {
-    return this.http.post<TypeServicesPlan[]>('http://localhost:8082/addtypeservicesplan', tsp);
+  public addtypeservicesplan(tsp: TypeServicesPlan) {
+    return this.http.post<TypeServicesPlan>('http://localhost:8082/addtypeservicesplan', tsp);
   }
 
   public UploadFile(file: File) {
