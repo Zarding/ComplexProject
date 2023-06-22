@@ -10,6 +10,7 @@ import { TypeServicesPlan } from 'src/app/class/typeservicesplan';
 import { ModalAddServiceComponent } from '../main-client-service-plans/modal-add-service/modal-add-service.component';
 import { UserService } from 'src/app/services/user.service';
 import { ModalActionServiceComponent } from './modal-action-service/modal-action-service.component';
+import { ModalViewServiceComponent } from './modal-view-service/modal-view-service.component';
 
 @Component({
   selector: 'app-serviceplan',
@@ -23,8 +24,6 @@ export class ServiceplanComponent {
   dataSource! : TypeServicesPlan[];
   dataSoruce1 = new MatTableDataSource();
   plan? : Plan;
-
-  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
 
@@ -75,5 +74,15 @@ export class ServiceplanComponent {
       })
       //this.refServ.save(reference);
     })
+  }
+
+  openDialogView(element: TypeServicesPlan, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open(ModalViewServiceComponent, {
+      width: '470px',
+      height: '550px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    dialogRef.componentInstance.typeservicesplan = element;
   }
 }

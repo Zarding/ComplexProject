@@ -23,6 +23,7 @@ export class AddClientComponent {
   client: Client = new Client();
   id!: number;
   workers?: User[];
+  photofile? : File;
   worker? : User;
   usClient? : UserClient;
   selectedSex?: string;
@@ -59,8 +60,9 @@ export class AddClientComponent {
     this.client.documents = this.dataSource;
     this.usClient!.idUser = this.worker;
     this.client.userClients = this.usClient;
-    this.clientServ.save(this.client, this.worker?.id!).subscribe(
+    this.clientServ.save(this.client, this.worker?.id!, this.photofile!).subscribe(
       () =>{
+        //this.clientServ.UploadFile(this.photofile!);
         this.gotoUserList();
       }
     );
@@ -94,5 +96,15 @@ export class AddClientComponent {
     });
     this.dataSoruce1.data = this.dataSource;
     this.dataSoruce1.connect();
+  }
+
+  uploadPhoto(event : any) {
+    const file = event.target.files[0];
+    this.photofile = file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.client.photo = reader.result as string;
+    }
   }
 }

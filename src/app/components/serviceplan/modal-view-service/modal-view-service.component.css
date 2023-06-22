@@ -1,0 +1,15 @@
+.label {
+    @apply mb-1 block text-base font-medium text-[#07074D]
+}
+.input-text {
+    @apply w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-2 text-base font-medium text-[#6B7280] outline-none focus:border-green-500 focus:shadow-md
+}
+.component {
+    @apply bg-white px-[10px] h-full py-[10px]
+}
+.button_apply {
+    @apply flex w-full justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+}
+.button_cancel {
+    @apply flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+}

@@ -87,6 +87,7 @@
          </th>
          <td mat-cell *matCellDef="let element" fxLayoutGap="5px">
             <button (click)="openDialogAction(element, '0ms', '0ms')" mat-mini-fab color="primary" *ngIf="element.status == 'Новый' && element.idUser.id == usServ.user.id"><mat-icon>edit</mat-icon></button>
+            <button (click)="openDialogView(element, '0ms', '0ms')" mat-mini-fab color="primary"><mat-icon>info</mat-icon></button>
         </td>
        </ng-container>
      

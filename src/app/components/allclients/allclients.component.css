@@ -4,3 +4,15 @@
   .card {
     @apply bg-white shadow-xl rounded-2xl hover:text-red-400
   }
+  .label {
+    @apply mb-1 block text-sm font-medium text-[#07074D] sm:text-base
+}
+.input-text {
+  @apply w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-2 sm:text-base text-sm font-medium text-[#6B7280] outline-none focus:border-green-500 focus:shadow-md
+}
+.buttonaccept {
+  @apply flex w-full justify-center rounded-md bg-green-500 px-1 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+}
+.buttoncancel {
+  @apply flex w-full justify-center rounded-md bg-red-500 px-1 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+}

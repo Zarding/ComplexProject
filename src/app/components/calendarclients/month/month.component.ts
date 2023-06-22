@@ -10,10 +10,10 @@ import { Client } from "src/app/class/client";
   selector: 'month-component',
   template: `
       <div class="container">
-        <div class="buttons">
-          <a (click)="navigatePrevious()"> << </a>
-          <a (click)="navigateToday()"> Текущая неделя </a>
-          <a (click)="navigateNext()"> >> </a>
+        <div class="flex gap-1 mb-2">
+          <button (click)="navigatePrevious()" class="bg-green-200 hover:bg-green-400 text-white px-2 rounded-l-xl"> << </button>
+          <button (click)="navigateToday()" class="bg-green-200 hover:bg-green-400 text-white px-2"> Текущая неделя </button>
+          <button (click)="navigateNext()" class="bg-green-200 hover:bg-green-400 text-white px-2 rounded-r-xl"> >> </button>
         </div>
         <div class="content">
             <daypilot-month [config]="config" [events]="events" #month></daypilot-month>
@@ -22,7 +22,11 @@ import { Client } from "src/app/class/client";
       <div class="component" id="clientInformation" [style.opacity]="0">
         <div>
             <div class="h-full">
+              <div class="flex gap-2">
                 <label for="fName" class="label">Основная информация</label>
+                <a class="label" routerLink="../{{client.id}}/serviceplan/{{selectedserviceplan.id}}" [queryParams]="{id: client.id}">Открыть сервисный план</a>
+              </div>
+
                 <div class="w-full">
                     <div class="mb-5">
                         <label for="fName" class="label">ФИО</label>
@@ -40,10 +44,6 @@ import { Client } from "src/app/class/client";
     </div>
   `,
   styles: [`
-  .buttons {
-    
-  }
-
   .content {
     
   }
@@ -73,6 +73,7 @@ export class MonthComponent implements AfterViewInit, OnInit {
   date = DayPilot.Date.today();
 
   client : Client = {id: 0};
+  selectedserviceplan : TypeServicesPlan = new TypeServicesPlan();
 
   events: any[] = [];
 
@@ -100,16 +101,21 @@ export class MonthComponent implements AfterViewInit, OnInit {
     eventResizeHandling: "Disabled",
     eventClickHandling: "Select",
     onEventSelected: (args) => {
-      console.log(args.e.data.id);
+      this.selectedserviceplan = args.e.data;
       this.client.id = this.typeservicesplans.find(i => i.id == args.e.data.id)!.idPlan!.idClient!.id;
       this.client.name = this.typeservicesplans.find(i => i.id == args.e.data.id)!.idPlan!.idClient?.name;
       this.client.secondname = this.typeservicesplans.find(i => i.id == args.e.data.id)!.idPlan!.idClient?.secondname;
+      this.client.otchestvo = this.typeservicesplans.find(i => i.id == args.e.data.id)!.idPlan!.idClient?.otchestvo;
       document.getElementById("clientInformation")!.style.opacity = "1";
     },
     eventHoverHandling: "Disabled",
   };
 
   constructor(private ds: DataService) {
+  }
+
+  openClient() {
+    
   }
 
   ngAfterViewInit(): void {

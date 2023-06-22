@@ -16,5 +16,6 @@ export class Client {
     attribute?: string;
     idSocialStatus?: Socialstatus;
     userClients?: UserClient;
+    photo?: string;
     documents?: Document[];
   }

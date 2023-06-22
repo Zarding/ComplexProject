@@ -26,4 +26,8 @@ export class ReferencesService {
   public save(reference : Reference) {
     return this.http.post<Reference>('http://localhost:8082/addreference', reference);
   }
+
+  public delReference(reference : Reference) {
+    return this.http.post<Reference>('http://localhost:8082/delreference', reference);
+  }
 }

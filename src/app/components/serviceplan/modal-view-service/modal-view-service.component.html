@@ -1,0 +1,65 @@
+<div class="component">
+    <label for="fName" class="label">Информация об услуге</label>
+    <div class="w-full">
+        <form>
+        <div class="w-full">
+            <div class="mb-5">
+                <label for="sName" class="label">Затраченная сумма</label>
+                <input
+                    type="text"
+                    name="fName"
+                    [(ngModel)]="typeservicesplan!.summa"
+                    id="fName"
+                    placeholder="-"
+                    readonly
+                    class="input-text"/>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="mb-5">
+                <label for="sName" class="label">Дата оказания</label>
+                <input
+                    type="date"
+                    name="date"
+                    [(ngModel)]="typeservicesplan!.dateComplete"
+                    readonly
+                    id="fName"
+                    placeholder="Когда выдан"
+                    class="input-text peer" readonly/>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="mb-5">
+                <label for="sName" class="label">Фактическая стоимость</label>
+                <input
+                    type="text"
+                    name="fName"
+                    [(ngModel)]="typeservicesplan!.idServices!.price"
+                    id="fName"
+                    placeholder="-"
+                    readonly
+                    class="input-text peer"/>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="mb-5">
+                <label for="sName" class="label">Пояснение</label>
+                <textarea
+                    type="text"
+                    name="fName"
+                    [(ngModel)]="typeservicesplan!.annotation"
+                    id="fName"
+                    placeholder="-"
+                    readonly
+                    class="input-text h-28"></textarea>
+                    
+            </div>
+        </div>
+    </form>
+    </div>
+        <div class="w-[50%] ml-auto mr-0">
+            <div class="flex justify-between gap-4">
+            <button class="button_cancel" (click)="onNoClick()">Закрыть</button>
+            </div>
+        </div>
+</div>

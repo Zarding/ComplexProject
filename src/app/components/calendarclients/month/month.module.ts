@@ -5,13 +5,15 @@ import {NgModule} from "@angular/core";
 import {DayPilotModule} from "daypilot-pro-angular";
 import { MonthComponent } from "./month.component";
 import {HttpClientModule} from "@angular/common/http";
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    DayPilotModule
+    DayPilotModule,
+    RouterModule
   ],
   declarations: [
     MonthComponent

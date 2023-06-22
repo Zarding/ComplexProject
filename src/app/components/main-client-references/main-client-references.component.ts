@@ -58,4 +58,14 @@ export class MainClientReferencesComponent {
       this.dataSoruce1.connect();
     })
   }
+
+  del(element: Reference) {
+    this.refServ.delReference(element).subscribe(() => {
+      this.dataSource.forEach( (item, index) => {
+        if(item === element) this.dataSource.splice(index,1);
+      });
+      this.dataSoruce1.data = this.dataSource;
+      this.dataSoruce1.connect();
+    });
+  }
 }

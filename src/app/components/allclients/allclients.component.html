@@ -1,21 +1,38 @@
 <div class="w-full mx-[5px]">
     <div class="component h-[40px] flex flex-col">
-        <div class="flex justify-between my-auto">
-            <span><a href="#">Обновить таблицу</a></span>
-            <span><mat-slide-toggle checked="true" (change)=toggleDisplayDiv()>Фильтры</mat-slide-toggle></span>
+        <div class="my-auto">
+            <span><mat-slide-toggle checked="true" (change)="toggleDisplayDiv()">Фильтры</mat-slide-toggle></span>
         </div>
     </div>
-    <div id="myComponent" class="h-[100px] component" [style.opacity]="!isShowDiv ? '0' : '1'">
-        <div class="flex justify-between">
-            <span><a href="#">Обновить таблицу</a></span>
-            <span><a href="#" style="align-items: right;">Фильтры</a></span>
+    <div id="myComponent" class="h-[90px] component" [style.opacity]="!isShowDiv ? '0' : '1'">
+        <div class="flex gap-2">
+          <div class="w-[200px]">
+            <label for="fName" class="label">Социальный статус</label>
+            <select name="idSocialStatus" class="input-text form-control" [(ngModel)]="filterSocialStatus">
+                <option *ngFor="let socialstatus of socialstatuses" [ngValue]="socialstatus">{{socialstatus.name}}</option>
+           </select>
+          </div>
+          <div class="w-[175px]">
+            <label for="secondname" class="label">Фамилия</label>
+            <input
+                type="text"
+                [(ngModel)]="filterSecondName"
+                name="secondname"
+                id="secondname"
+                placeholder="Фамилия"
+                class="input-text"/>
+          </div>
+          <div class="w-[100px] mt-2 gap-2 flex flex-col">
+            <button class="buttonaccept" type="submit" (click)="clickFilter()">Применить</button>
+            <button class="buttoncancel" type="submit" (click)="cancelFilter()">Снять</button>
+          </div>
         </div>
     </div>
 </div>
 <div class="antialiased mx-[5px]">
     <div class="flex flex-col">
         <div id="menu" class="z-10">
-          <div fxLayout="row wrap" fxLayoutGap="16px grid" >
+          <div fxLayout="row wrap" fxLayoutGap="16px grid">
             <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
                  infinite-scroll
                  [infiniteScrollDistance]="2"
@@ -25,16 +42,16 @@
                   <a routerLink="../{{client.id}}/information" [queryParams]="{id: client.id}">
                   <mat-card class="card">
                       <mat-card-header>
-                        <mat-card-title class="text-xs">Имя: {{ client.name }}</mat-card-title>
-                        <mat-card-subtitle>Возраст: {{client.secondname}}</mat-card-subtitle>
+                        <mat-card-title class="text-xs">Фамилия: {{ client.secondname }}</mat-card-title>
+                        <mat-card-subtitle>Имя: {{client.name}}</mat-card-subtitle>
+                        <mat-card-subtitle>Отчество: {{client.otchestvo}}</mat-card-subtitle>
                       </mat-card-header>
                       <br>
                       
                       <mat-card-content>
-                        <br>
-                        <p>
-                          Пол: Муж.
-                        </p>
+                        <p>Дата рождения: {{client.dateOfBirth}}</p>
+                        <p>Пол: {{client.sex}}</p>
+                        <p>Соц. статус: {{client.idSocialStatus?.name}}</p>
                       </mat-card-content>
                     </mat-card>
                  </a>

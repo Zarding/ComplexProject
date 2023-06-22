@@ -38,6 +38,7 @@ import { ModalAddReferenceComponent } from './components/main-client-references/
 import { ModalAddServiceComponent } from './components/main-client-service-plans/modal-add-service/modal-add-service.component';
 import { ModalActionServiceComponent } from './components/serviceplan/modal-action-service/modal-action-service.component';
 import { ModalAddUserclientComponent } from './components/main-client-information/modal-add-userclient/modal-add-userclient.component';
+import { ModalViewServiceComponent } from './components/serviceplan/modal-view-service/modal-view-service.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ModalAddUserclientComponent } from './components/main-client-informatio
     ModalAddReferenceComponent,
     ModalAddServiceComponent,
     ModalActionServiceComponent,
-    ModalAddUserclientComponent
+    ModalAddUserclientComponent,
+    ModalViewServiceComponent
   ],
   imports: [
     CalendarModule,

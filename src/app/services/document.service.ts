@@ -22,4 +22,8 @@ export class DocumentService {
   public save(document : Document) {
     return this.http.post<Document>('http://localhost:8082/adddocument', document);
   }
+
+  public delDocument(document : Document) {
+    return this.http.post<Document>('http://localhost:8082/deldocument', document);
+  }
 }

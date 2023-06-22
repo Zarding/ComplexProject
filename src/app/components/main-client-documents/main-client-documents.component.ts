@@ -7,8 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClientService } from 'src/app/services/client.service';
 import { UserService } from 'src/app/services/user.service';
 import { DocumentService } from 'src/app/services/document.service';
-
-const Documents: Document[] = [];
+import { Document } from 'src/app/class/document';
 
 @Component({
   selector: 'app-main-client-documents',
@@ -58,5 +57,15 @@ export class MainClientDocumentsComponent {
       this.dataSoruce1.data = this.dataSource;
       this.dataSoruce1.connect();
     })
+  }
+
+  del(element: Document) {
+    this.docServ.delDocument(element).subscribe(() => {
+      this.dataSource.forEach( (item, index) => {
+        if(item === element) this.dataSource.splice(index,1);
+      });
+      this.dataSoruce1.data = this.dataSource;
+      this.dataSoruce1.connect();
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Location } from '@angular/common';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +20,7 @@ import { min } from 'rxjs';
 })
 
 export class AddServiceplanComponent implements OnInit {
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private clientServ: ClientService){}
+  constructor(private route: ActivatedRoute, private location: Location, public dialog: MatDialog, private clientServ: ClientService){}
 
   displayedColumns: string[] = ['type', 'name', 'user', 'date', 'action'];
   dataSource : TypeServicesPlan[] = [];
@@ -66,7 +67,7 @@ export class AddServiceplanComponent implements OnInit {
     }
     this.clientServ.addplan(this.dataSource).subscribe(
       () =>{
-        //this.gotoUserList();
+        this.gotoServicePlanList();
       }
     );
   }
@@ -83,8 +84,11 @@ export class AddServiceplanComponent implements OnInit {
     const date = new Date(this.plan.dateStart!);
     date.setDate(date.getDate() + 1);
     this.mindate = date.toISOString().slice(0, 10);
-    alert(this.plan.dateFinish + ' | ' + this.plan.dateStart);
     //this.mindate?.setDate(this.plan.dateStart!.getDate() + 1);
     
+  }
+
+  gotoServicePlanList() {
+    this.location.back();
   }
 }

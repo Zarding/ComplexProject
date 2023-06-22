@@ -6,6 +6,9 @@ import { Reference } from '../class/reference';
 import { TypeServicesPlan } from '../class/typeservicesplan';
 import { Plan } from '../class/plan';
 import { UserClient } from '../class/userclient';
+import { Socialstatus } from '../class/socialstatus';
+import { User } from '../class/user';
+import { Document } from '../class/document';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +23,14 @@ export class ClientService {
   }
 
   public findAll(): Observable<Client[]> {
+    return this.http.get<Client[]>(this.URL);
+  }
+
+  public findAllClientsById(iduser: number): Observable<Client[]> {
+    return this.http.get<Client[]>('http://localhost:8082/clientslist/' + iduser);
+  }
+
+  public findAllFilter(socialstatus: Socialstatus, secondname: string): Observable<Client[]> {
     return this.http.get<Client[]>(this.URL);
   }
 
@@ -51,7 +62,8 @@ export class ClientService {
     return this.http.get<TypeServicesPlan[]>('http://localhost:8082/typeserviceplan/' + id);
   }
 
-  public save(client : Client, id: number) {
+  public save(client : Client, id: number, file: File) {
+    this.UploadFile(file);
     return this.http.post<Client>('http://localhost:8082/addclient/' + id, client);
   }
 
@@ -61,5 +73,11 @@ export class ClientService {
 
   public addtypeservicesplan(tsp: TypeServicesPlan[]) {
     return this.http.post<TypeServicesPlan[]>('http://localhost:8082/addtypeservicesplan', tsp);
+  }
+
+  public UploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post('http://localhost:8082/upload', formData);
   }
 }
